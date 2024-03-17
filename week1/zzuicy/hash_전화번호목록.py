@@ -1,11 +1,16 @@
-def solution(clothes):
-    cloth_map = {}
-    answer = 1
+def solution(phone_book):
+    phone_nums = {}
 
-    for _, cloth_type in clothes:
-        cloth_map[cloth_type] = cloth_map.get(cloth_type, 0) + 1
+    for phone_num in phone_book:
+        phone_len = len(phone_num)
+        phone_nums[phone_len] = phone_nums.get(phone_len) or set()
+        phone_nums[phone_len].add(phone_num)
 
-    for key in cloth_map:
-        answer *= cloth_map[key] + 1  # 아무것도 안입는 경우 +1
+    for phone_num in phone_book:
+        for length in phone_nums:
+            if length >= len(phone_num):
+                continue
+            if phone_num[:length] in phone_nums.get(length):
+                return False
 
-    return answer - 1  # 모든 종류의 옷을 모두 안입은 경우 -1
+    return True
