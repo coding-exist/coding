@@ -1,12 +1,6 @@
 def solution(n, k):
-    a = 0
-    for i in range(n+1):
-        if (i+1)%10 == 0:
-            a += 1
-    answer = (n * 12000) + (k * 2000) - (a * 2000)
-    return answer
-
-solution(109,)
+    bonus = n // 10
+    return (n * 12000) + ((k - bonus) * 2000)
 # 양꼬치 1인분 12000
 # 음료수 1개 2000
 # 양꼬치 n인분 
